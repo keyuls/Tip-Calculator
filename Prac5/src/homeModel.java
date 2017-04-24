@@ -174,7 +174,6 @@ public void setSlideList(float[] slideList) {
 		 EventQueue.invokeLater(new Runnable() {
 	         @Override
 	         public void run() {
-	         //   System.out.println(getTotalBillandTip());
 	            hc.setMinP(getMinP()); 
 	            hc.setMaxP(getMaxP()); 
 	        	hc.setNoOfGuestv(getNoOfGuest());
@@ -185,18 +184,11 @@ public void setSlideList(float[] slideList) {
 	        	hc.setTotalTipv(getTotalTip());
 	        	hc.setTotalBillv(getTotalBill());
 	        	hc.setTotalBillandTipv(getTotalBillandTip());
-	        	
-	        	
-	        	
-	        	
 	        	hc.setGuestlist(getGuestlist());
 	        	hc.setPerTipList(getPerTipList());
 	        	hc.setSlideList(getSlideList());
-	        	
-	        	
 	        	hc.setTaxStatus(getTaxStatus());
-	        	hc.setDeductStatus(getDeductStatus());
-	        	
+	        	hc.setDeductStatus(getDeductStatus());	        	
 	     		hc.homeV();
 	     		
 	         }
@@ -208,102 +200,65 @@ public void setSlideList(float[] slideList) {
 	
 	
 	
-int calculateTotalTip()
-{
-	/*
-	if(getQos()==1)
-	{
-		t=5;
-	}
-	
-	if(getQos()==2)
-	{
-		t=10;
-	}
-	if(getQos()==3)
-	{
-		t=15;
-	}
-	if(getQos()==4)
-	{
-		t=20;
-	}
-	if(getQos()==5)
-	{
-		t=25;
-	}
-	
-setTotalTip(t);*/
-	return t;	
-}
 
-float calculateTipRate()
-{
-	int newbill;
-	int taxa = getTax();
-	int dded = getDeduction();
-	int bill = getTotalBill();
-	
-	
-	if(getTaxStatus()==0 )
-		
+	float calculateTipRate()
 	{
-	taxa=0;	
-	
-	}
-	
-	if(getDeductStatus()==0 )
-		
-	{
-	dded=0;	
-	}
+		int newbill;
+		int taxa = getTax();
+		int dded = getDeduction();
+		int bill = getTotalBill();
+
+
+		if(getTaxStatus()==0 ){
+			taxa=0;	
+		}
+
+		if(getDeductStatus()==0 ){
+			dded=0;	
+		}
 		newbill= ((taxa + bill) - dded);
-		
-	
-	
-	
-	float rate=0;
+		float rate=0;
 
-	if(newbill!=0)
-	{		
-	try{
-	 rate = (float)((getQos()*100)/newbill);
-	 
-	 
-	}
-	catch(NumberFormatException ex){
-		System.out.println("error");
-		
-	}
-	}	
-	return rate;
-}
+		if(newbill!=0)
+		{		
+		try{
+		 rate = (float)((getQos()*100)/newbill);
 
-float calculateperPersonTip()
-{
-	
-	
-	int g =0;
-	float  c=0;
-	try{
-	g=getNoOfGuest();
-	
-if (g!=0)
-{
-	    c =(getQos()/g);
-}
 
+		}
+		catch(NumberFormatException ex){
+			System.out.println("error");
+
+		}
+		}	
+		return rate;
 	}
-	
-	catch(NumberFormatException ex)
+
+	float calculateperPersonTip()
 	{
-		
-		g=0;
+
+
+		int g =0;
+		float  c=0;
+		try{
+		g=getNoOfGuest();
+
+	if (g!=0)
+	{
+		    c =(getQos()/g);
 	}
 
-return c;
+		}
 
-}
+		catch(NumberFormatException ex)
+		{
+
+			g=0;
+		}
+
+	return c;
+
+	}
 
 int calculateTotalBillandTip()
 {
